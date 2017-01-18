@@ -1,5 +1,9 @@
 h1 #{@article.title}
 
+td
+	- @article.images.each do |image|
+		= image_tag(image.url)
+
 h4 Contenu
 p #{@article.content}
 

@@ -1,5 +1,6 @@
 module Mpcm
   class Article < ApplicationRecord
+    mount_uploaders :images, ImageUploader
     scope :published, -> { where('published_at <= ?', Time.zone.now) }
 
     def formatted_height

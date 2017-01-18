@@ -57,6 +57,7 @@ module Mpcm
                                       :depth,
                                       :weigth,
                                       :price,
+                                      {images: []},
                                       :published
                                       )
     end
