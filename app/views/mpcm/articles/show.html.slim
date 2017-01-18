@@ -1,1 +1,24 @@
-h1 = @article.title
+h1 #{@article.title}
+
+h4 Contenu
+p #{@article.content}
+
+h4 Description
+span Hauteur:
+=< @article.formatted_height
+br
+span Largeur:
+=< @article.formatted_width
+br
+span Profondeur:
+=< @article.formatted_depth
+br
+span Poids:
+=< @article.formatted_weigth
+br
+span Prix:
+=< @article.formatted_price
+br
+= link_to 'Retour', articles_path
+span  |
+=< link_to 'Modifier', edit_article_path(@article)
