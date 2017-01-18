@@ -1,0 +1,12 @@
+= simple_form_for(@article) do |f|
+	= f.input :title, label: 'Titre', error: 'Un titre est obligatoire'
+	= f.input :content, label: 'Contenu', as: :text
+	= f.input :height, label: 'Hauteur', hint: 'Facultatif', as: :float
+	= f.input :width, label: 'Longueur', hint: 'Facultatif', as: :float
+	= f.input :depth, label: 'Profondeur', hint: 'Facultatif', as: :float
+	= f.input :weigth, label: 'Poids', hint: 'Facultatif', as: :float
+	= f.input :price, label: 'Prix', hint: 'Facultatif', as: :float
+	= f.input :published, label: 'Publié ?', hint: 'Cochez la case pour publié l\'article', as: :boolean
+	= f.input :slug, label: 'Nom de l\'URL', hint: 'Facultatif'
+
+	= f.submit 'Enregistrer'
