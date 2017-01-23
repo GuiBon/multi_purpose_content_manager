@@ -1,16 +1,14 @@
 h1 #{@article.title}
 
-/ td
-/   - @article.images.each_with_index do |image, index|
-/     div
-/       = image_tag(image.url)
-/       = link_to 'Supprimer', article_image_path(@article, index), method: :delete, data: { confirm: 'Êtes-vous sûre de vouloir supprimer cette image ?'}
-
-/ = form_for @article, url: article_images_path(@article), method: :post do |f|
-/   .field
-/     = f.file_field :images, multiple: true
-/   .actions
-/     = f.submit 'Ajouter des images'
+div.carousel.slide id='images-carousel' data-ride='carousel'
+  div.carousel-inner
+    - @article.images.each do |p|
+      div.item
+        = image_tag(p)
+  a.left.carousel-control href='#images-carousel' role='button' data-slide='prev'
+    span.glyphicon.glyphicon-chevron-left
+  a.left.carousel-control href='#images-carousel' role='button' data-slide='next'
+    span.glyphicon.glyphicon-chevron-right
 
 h4 Contenu
 p #{@article.content}
@@ -36,3 +34,11 @@ span  |
 =< link_to 'Modifier', edit_article_path(@article)
 span  |
 =< link_to 'Modifier les images', edit_images_article_path(@article)
+
+javascript:
+  $(function(){
+    $('.carousel').carousel({
+      interval: false
+    })
+    $('.item:first').addClass('active');
+  });
