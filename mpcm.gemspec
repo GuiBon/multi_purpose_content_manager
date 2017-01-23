@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails', '~> 5.0.1'
   s.add_dependency 'slim-rails', '~> 3.1.1'
-  s.add_dependency 'bootstrap-sass', '~> 3.2.0'
+  s.add_dependency 'bootstrap-sass', '~> 3.2.0.2'
   s.add_dependency 'simple_form', '~> 3.4.0'
 
   s.add_development_dependency 'pg'

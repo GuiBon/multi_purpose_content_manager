@@ -1,8 +1,16 @@
 h1 #{@article.title}
 
-td
-	- @article.images.each do |image|
-		= image_tag(image.url)
+/ td
+/   - @article.images.each_with_index do |image, index|
+/     div
+/       = image_tag(image.url)
+/       = link_to 'Supprimer', article_image_path(@article, index), method: :delete, data: { confirm: 'Êtes-vous sûre de vouloir supprimer cette image ?'}
+
+/ = form_for @article, url: article_images_path(@article), method: :post do |f|
+/   .field
+/     = f.file_field :images, multiple: true
+/   .actions
+/     = f.submit 'Ajouter des images'
 
 h4 Contenu
 p #{@article.content}
@@ -26,3 +34,5 @@ br
 = link_to 'Retour', articles_path
 span  |
 =< link_to 'Modifier', edit_article_path(@article)
+span  |
+=< link_to 'Modifier les images', edit_images_article_path(@article)
