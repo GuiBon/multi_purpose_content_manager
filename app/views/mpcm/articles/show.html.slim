@@ -1,14 +1,6 @@
 h1 #{@article.title}
 
-div.carousel.slide id='images-carousel' data-ride='carousel'
-  div.carousel-inner
-    - @article.images.each do |p|
-      div.item
-        = image_tag(p)
-  a.left.carousel-control href='#images-carousel' role='button' data-slide='prev'
-    span.glyphicon.glyphicon-chevron-left
-  a.left.carousel-control href='#images-carousel' role='button' data-slide='next'
-    span.glyphicon.glyphicon-chevron-right
+= carousel_for(@article.images_urls)
 
 h4 Contenu
 p #{@article.content}

@@ -13,8 +13,8 @@ table.table.space-4
     - @articles.each do |article|
       tr
         td = article.title
-        td = article.created_at
-        td = article.published
+        td = article.formatted_creation_time
+        td = article.formatted_published
         td = link_to 'Voir', article_path(article)
         td = link_to 'Modifier', edit_article_path(article)
         td = link_to 'Supprimer', article_path(article), method: :delete, data: { confirm: 'Êtes-vous sûr ?' }

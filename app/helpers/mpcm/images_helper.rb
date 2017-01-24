@@ -12,7 +12,7 @@ module Mpcm
 
       def html
         content = safe_join([indicators, slides, controls])
-        content_tag(:div, content, class: 'carousel slide')
+        content_tag(:div, content, id: uid, class: 'carousel slide')
       end
 
       private

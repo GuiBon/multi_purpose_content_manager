@@ -3,6 +3,36 @@ module Mpcm
     mount_uploaders :images, ImageUploader
     scope :published, -> { where('published_at <= ?', Time.zone.now) }
 
+    def image_urls
+      self.images.map { |image| image.thumb.url }
+    end
+
+    def formatted_creation_time
+      unless !self.created_at
+        self.created_at.strftime("%d/%m/%Y - %H:%M:%S")
+      end
+    end
+
+    def formatted_update_time
+      unless !self.updated_at
+        self.updated_at.strftime("%d/%m/%Y - %H:%M:%S")
+      end
+    end
+
+    def formatted_published_time
+      unless !self.published_at
+        self.published_at.strftime("%d/%m/%Y - %H:%M:%S")
+      end
+    end
+
+    def formatted_published
+      if self.published && self.published == true
+        'Oui'
+      else
+        'Non'
+      end
+    end
+
     def formatted_height
       if self.height
         "#{self.height} cm"
