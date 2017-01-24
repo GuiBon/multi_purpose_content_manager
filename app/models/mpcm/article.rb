@@ -2,11 +2,6 @@ module Mpcm
   class Article < ApplicationRecord
     validates :title, presence: true
     mount_uploaders :images, ImageUploader
-    scope :published, -> { where('published_at <= ?', Time.zone.now) }
-
-    def image_urls
-      self.images.map { |image| image.thumb.url }
-    end
 
     def formatted_creation_time
       unless !self.created_at

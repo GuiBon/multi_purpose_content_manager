@@ -1,9 +1,11 @@
 require_dependency "mpcm/application_controller"
+require 'fileutils'
 
 module Mpcm
   class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :edit_images, :update, :destroy]
     after_action :set_slug, only: [:create, :update]
+    after_action :set_published_date, only: [:create, :update]
 
     def index
       @articles = Article.all.order('updated_at DESC')
@@ -45,7 +47,9 @@ module Mpcm
     end
 
     def destroy
+      saved_id = @article.id
       @article.destroy
+      delete_images_folder(saved_id)
       redirect_to articles_path, notice: 'Article supprimé avec succès'
     end
 
@@ -76,6 +80,18 @@ module Mpcm
       else
         @article.update_attribute :slug, @article[:slug].parameterize
       end
+    end
+
+    def set_published_date
+      if @article.published
+        @article.update_attribute :published_at, Time.zone.now
+      else
+        @article.update_attribute :published_at, nil
+      end
+    end
+
+    def delete_images_folder id
+      FileUtils.remove_dir "#{Rails.root}/public/uploads/mpcm/article/images/#{id}", true
     end
   end
 end
