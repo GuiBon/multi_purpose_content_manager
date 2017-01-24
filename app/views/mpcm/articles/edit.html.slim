@@ -8,7 +8,7 @@ h1 Modifier l'article
   = f.input :depth, label: 'Profondeur', hint: 'Facultatif', as: :float
   = f.input :weigth, label: 'Poids', hint: 'Facultatif', as: :float
   = f.input :price, label: 'Prix', hint: 'Facultatif', as: :float
-  = f.input :published, label: 'Publié ?', hint: 'Cochez la case pour publié l\'article', as: :boolean
+  = f.input :published, label: 'Publié ?', hint: 'Cochez la case pour publié l\'article', as: :radio_buttons, collection: [['Oui', true], ['Non', false]]
   = f.input :slug, label: 'Nom de l\'URL', hint: 'Facultatif'
 
   = f.submit 'Enregistrer'

@@ -1,5 +1,6 @@
 module Mpcm
   class Article < ApplicationRecord
+    validates :title, presence: true
     mount_uploaders :images, ImageUploader
     scope :published, -> { where('published_at <= ?', Time.zone.now) }
 
@@ -71,6 +72,10 @@ module Mpcm
       else
         'N/C'
       end
+    end
+
+    def to_param
+      self.slug
     end
   end
 end

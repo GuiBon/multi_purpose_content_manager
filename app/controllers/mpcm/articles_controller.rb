@@ -3,19 +3,24 @@ require_dependency "mpcm/application_controller"
 module Mpcm
   class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit, :edit_images, :update, :destroy]
+    after_action :set_slug, only: [:create, :update]
 
     def index
-      @articles = Article.all
+      @articles = Article.all.order('updated_at DESC')
     end
 
     def show
+      render :show
     end
 
     def new
       @article = Article.new
+
+      render :new
     end
 
     def edit
+      render :edit
     end
 
     def edit_images
@@ -47,7 +52,7 @@ module Mpcm
     private
 
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.find_by_slug(params[:id])
     end
 
     def article_params
@@ -63,6 +68,14 @@ module Mpcm
                                       {images: []},
                                       :published
                                       )
+    end
+
+    def set_slug
+      if @article[:slug].blank?
+        @article.update_attribute :slug, @article[:title].parameterize
+      else
+        @article.update_attribute :slug, @article[:slug].parameterize
+      end
     end
   end
 end
